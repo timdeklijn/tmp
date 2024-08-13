@@ -1,0 +1,118 @@
+{
+  "mi20containerpull001-o": {
+    "service_principle": "d89d4398-4a13-4c00-8387-9cb77991fe13",
+    "roles": "AcrPull"
+  },
+  "mi20monfunc001-p": {
+    "service_principle": "65e73417-12da-448f-acc6-e9ecc9286ec2",
+    "roles": "Storage File Data SMB Share Elevated Contributor\nStorage Blob Data Owner"
+  },
+  "mi20crowdednessapi001-p": {
+    "service_principle": "f0b4d88a-3066-4769-9256-8ee29e0e85a6",
+    "roles": "Storage File Data SMB Share Elevated Contributor\nStorage Blob Data Owner\nDocumentDB Account Contributor\nCosmos DB Account Reader Role\nAzure Event Hubs Data Receiver"
+  },
+  "mi20ppvstream001-p": {
+    "service_principle": "2973f7e3-b76e-4e16-a79e-f2eb1bc3b028",
+    "roles": "Storage File Data SMB Share Elevated Contributor\nStorage Blob Data Owner\nAzure Event Hubs Data Sender\nAzure Event Hubs Data Receiver"
+  },
+  "mi20crowdednessupdates001-a": {
+    "service_principle": "0512e2ad-d1dc-4f09-b3b0-7115bc330148",
+    "roles": "Azure Event Hubs Data Receiver\nStorage Blob Data Owner\nStorage Table Data Contributor\nStorage Queue Data Contributor\nStorage File Data SMB Share Elevated Contributor\nStorage Blob Data Owner\nAzure Event Hubs Data Receiver\nCosmos DB Account Reader Role\nAzure Event Hubs Data Sender\nAzure Event Hubs Data Receiver\nAzure Event Hubs Data Owner"
+  },
+  "mi20crowdednessupdates001-p": {
+    "service_principle": "6317c35b-308c-46a5-99b3-485e9f84f1dc",
+    "roles": "Azure Event Hubs Data Receiver\nStorage Blob Data Owner\nAzure Event Hubs Data Receiver\nStorage Table Data Contributor\nStorage Queue Data Contributor\nStorage File Data SMB Share Elevated Contributor\nStorage Blob Data Owner\nCosmos DB Account Reader Role\nAzure Event Hubs Data Sender\nAzure Event Hubs Data Receiver\nAzure Event Hubs Data Owner"
+  },
+  "mi20crowdednessapi001-a": {
+    "service_principle": "381e3eab-c49d-4d95-aafa-a59537873a36",
+    "roles": "Storage File Data SMB Share Elevated Contributor\nStorage Blob Data Owner\nDocumentDB Account Contributor\nCosmos DB Account Reader Role\nAzure Event Hubs Data Receiver"
+  },
+  "mi20containerpull001-p": {
+    "service_principle": "e652518e-4848-4c42-8d35-31e7d5b27c5a",
+    "roles": "AcrPull"
+  },
+  "mi20getv2crowdedness001-a": {
+    "service_principle": "7b42d6b6-80e0-4541-bb25-253feee0a091",
+    "roles": "Storage Blob Data Reader\nStorage Table Data Contributor\nStorage Queue Data Contributor\nStorage File Data SMB Share Elevated Contributor\nStorage Blob Data Owner\nAzure Event Hubs Data Sender\nAzure Event Hubs Data Receiver"
+  },
+  "mi20getv1crowdedness001-a": {
+    "service_principle": "df65c16f-8000-47f8-bd86-59d0d1faff12",
+    "roles": "Storage Blob Data Reader\nStorage Table Data Contributor\nStorage Queue Data Contributor\nStorage File Data SMB Share Elevated Contributor\nStorage Blob Data Owner\nAzure Event Hubs Data Sender\nAzure Event Hubs Data Receiver"
+  },
+  "mi20getv2crowdedness001-p": {
+    "service_principle": "62a81d2f-a2b3-40bc-9689-53c2d8233086",
+    "roles": "Azure Event Hubs Data Receiver\nStorage Table Data Contributor\nStorage Queue Data Contributor\nStorage File Data SMB Share Elevated Contributor\nStorage Blob Data Owner\nAzure Event Hubs Data Sender"
+  },
+  "mi20getv1crowdedness001-p": {
+    "service_principle": "00c7a2f3-04dc-47aa-acea-a122bba976df",
+    "roles": "Azure Event Hubs Data Receiver\nStorage Table Data Contributor\nStorage Queue Data Contributor\nStorage File Data SMB Share Elevated Contributor\nStorage Blob Data Owner\nAzure Event Hubs Data Sender"
+  },
+  "MI-aaklant-a-akv2k8s": {
+    "service_principle": "c6daf2b3-dec6-42bb-a35b-e59a84250291",
+    "roles": "Key Vault Secrets User"
+  },
+  "MI-aaklant-a-loki": {
+    "service_principle": "a408dda2-9961-44f1-93c0-690dc09b2832",
+    "roles": "Storage Blob Data Contributor"
+  },
+  "MI-aaklant-a-grafana-azure-monitor": {
+    "service_principle": "79de8a80-32e2-46a0-9d23-9e1f0326a3cc",
+    "roles": "Reader\nMonitoring Reader"
+  },
+  "MI-aaklant-a-cert-manager": {
+    "service_principle": "58198776-551d-4426-bdfd-969fec4b0844",
+    "roles": "DNS Zone Contributor"
+  },
+  "MI-aaklant-a-external-dns-public": {
+    "service_principle": "401b7b43-66f6-4c44-9b5a-1a6f3890864a",
+    "roles": "Reader\nContributor"
+  },
+  "MI-aaklant-a-agic": {
+    "service_principle": "89728dd5-410d-41c7-a22a-3d9dbedec7c2",
+    "roles": "Contributor\nReader\nCustomRole - VNet Subnet Join - NS-Root"
+  },
+  "MI-aaklant-a-external-dns-priv": {
+    "service_principle": "44d532c9-d160-4317-8e1b-cd2de114a038",
+    "roles": "Reader\nContributor"
+  },
+  "MI-aaklant-p-akv2k8s": {
+    "service_principle": "c0e9d65c-31b3-4728-b469-de9157f05394",
+    "roles": "Key Vault Secrets User"
+  },
+  "MI-aaklant-p-loki": {
+    "service_principle": "48f68830-6c3f-4e97-8adb-65c7854e563c",
+    "roles": "Storage Blob Data Contributor"
+  },
+  "MI-aaklant-p-grafana-azure-monitor": {
+    "service_principle": "bd8bfe4d-7517-4837-b060-0fd302c05f0c",
+    "roles": "Reader\nMonitoring Reader"
+  },
+  "MI-aaklant-p-cert-manager": {
+    "service_principle": "bdb66110-15a8-4978-b7aa-6fe67db979c4",
+    "roles": "DNS Zone Contributor"
+  },
+  "MI-aaklant-p-external-dns-priv": {
+    "service_principle": "b4f14afc-953f-4f68-856d-def3de64f9aa",
+    "roles": "Reader\nContributor"
+  },
+  "MI-aaklant-p-agic": {
+    "service_principle": "9eabc778-7469-450d-86ff-f18a143f8798",
+    "roles": "Reader\nContributor\nCustomRole - VNet Subnet Join - NS-Root"
+  },
+  "MI-aaklant-p-external-dns-public": {
+    "service_principle": "66001afb-94e5-4a6a-b12a-b6e8822ba40f",
+    "roles": "Reader\nContributor"
+  },
+  "mi20rioingestion001-p": {
+    "service_principle": "dbfdb25b-584c-4464-8ef5-5cfe2ed325c2",
+    "roles": "Storage Blob Data Contributor\nStorage File Data SMB Share Elevated Contributor"
+  },
+  "mi20containerpull001-t": {
+    "service_principle": "56958443-3933-4b2e-b17d-4ff65035eaac",
+    "roles": "AcrPull"
+  },
+  "MI20CNSHW100-A": {
+    "service_principle": "11a630bd-5233-4536-8255-45ba54a9ee7b",
+    "roles": "Cost Management Reader"
+  }
+}

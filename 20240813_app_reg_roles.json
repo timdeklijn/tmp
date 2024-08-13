@@ -1,0 +1,46 @@
+{
+  "AR20ZPZ001-PP": {
+    "service_principle": "292482ed-a119-498e-b700-8c0910a38f59",
+    "roles": "Storage Blob Data Contributor"
+  },
+  "ar20monitor001-p": {
+    "service_principle": "06d3a813-2c88-4dad-9d9b-0157bb24e734",
+    "roles": "Log Analytics Reader"
+  },
+  "AR20PARSER001-PP": {
+    "service_principle": "ca726a99-2b71-42c5-85a9-846345a361c1",
+    "roles": "Storage Blob Data Contributor"
+  },
+  "ar20parser001-p": {
+    "service_principle": "ca726a99-2b71-42c5-85a9-846345a361c1",
+    "roles": "Storage Blob Data Contributor"
+  },
+  "RA20DNAAAKDevOpsDP-Prod": {
+    "service_principle": "1d3f6a4b-6260-42f8-967f-ccab5f30b5fb",
+    "roles": "Contributor\nContributor\nContributor\nContributor\nContributor\nContributor\nContributor\nReader\nStorage Blob Data Owner\nContributor\nContributor\nContributor\nContributor\nContributor\nStorage Blob Data Owner\nCustomRole - MG KeyVault Purge - NS-Root\nContributor\nContributor\nContributor\nContributor\nContributor\nContributor\nContributor\nContributor\nContributor\nCustomRole - MG KeyVault Purge - NS-Root\nCustomRole - MG KeyVault Purge - NS-Root\nContributor\nContributor\nContributor\nCustomRole - MG KeyVault Purge - NS-Root\nContributor\nCustomRole - MG KeyVault Purge - NS-Root\nCustomRole - MG KeyVault Purge - NS-Root\nContributor\nContributor\nStorage Blob Data Owner\nCustomRole - MG KeyVault Purge - NS-Root\nContributor\nStorage Blob Data Owner\nStorage Blob Data Owner\nContributor\nContributor\nStorage Blob Data Owner\nContributor\nStorage Blob Data Contributor\nContributor\nReader\nContributor\nContributor\nCustomRole - VNet Subnet Join - NS-Root\nLog Analytics Contributor\nContributor"
+  },
+  "ar20sigmaacrpull001-p": {
+    "service_principle": "dea2fa25-64ad-4ee7-b95f-c4bd264448c2",
+    "roles": "AcrPull"
+  },
+  "AR20ZPZ001-A": {
+    "service_principle": "cfddcf20-eb57-428f-8bd8-94e81ed2c3ef",
+    "roles": "Storage Blob Data Contributor\nStorage Blob Data Contributor\nStorage Blob Data Contributor"
+  },
+  "ar20zpz001-p": {
+    "service_principle": "292482ed-a119-498e-b700-8c0910a38f59",
+    "roles": "Storage Blob Data Contributor"
+  },
+  "ar20sigmaacl001-p": {
+    "service_principle": "c8ca8a56-f054-4fa6-bdf3-7682057fcba4",
+    "roles": "Storage Blob Data Owner\nStorage Blob Data Owner\nStorage Blob Data Owner"
+  },
+  "AR20PARSER001-A": {
+    "service_principle": "0b041ec5-0888-4874-af8a-36300c6aee92",
+    "roles": "Storage Blob Data Contributor\nStorage Blob Data Contributor\nStorage Blob Data Contributor\nStorage Blob Data Contributor"
+  },
+  "AR20SIGMAACRPUSH001-P": {
+    "service_principle": "e903f159-ef85-41dd-a999-51be4f4ce5c3",
+    "roles": "AcrPush"
+  }
+}

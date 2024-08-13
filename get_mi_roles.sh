@@ -23,6 +23,7 @@ do
 
   for mi_name in $mi_names
   do
+    echo $mi_name
     # get the service principles for the managed identity
     service_principles=$(az ad sp list \
       --display-name "$mi_name" \
@@ -36,10 +37,15 @@ do
     # loop over the service principles
     for sp in $service_principles
     do
-      # get the roles assigned to the service principle
+      echo "> $sp"
+      # get the roles assigned to the service principle.
+      #
+      # NOTE: the `-all` flag is required to find all roles. Without it 90% of
+      # the roles are not found
       roles=$(az role assignment list \
         --assignee $sp \
         --query [].roleDefinitionName \
+        --all \
         -o tsv)
   
       # if there are no roles assigned to the service principles simply skip it
@@ -55,10 +61,13 @@ do
         --arg "sp" "$sp" \
         --arg "roles" "$roles" \
         '. += {($mi_name): {"service_principle": $sp, "roles": $roles}}')
+
+      echo "> > $tmp"
       JSON=$(echo JSON | jq -n "$tmp")
     done
   done
 done
 
+echo $JSON
 echo $JSON | jq > mi_roles.json
 echo "done"
