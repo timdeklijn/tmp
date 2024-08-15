@@ -14,12 +14,11 @@ RAW_MI_DATA = "20240808_mi_roles.json"
 RAW_APP_REG_DATA = "20240813_app_reg_roles.json"
 OUTPUT = "roles_table.md"
 
-if __name__ == "__main__":
+RAW_AD_DATA = "ad_roles.json"
+AD_OUTPUT = "ad_roles_table.md"
 
-    # ==========================================================================
-    # Managed Identities
-    # ==========================================================================
 
+def managed_identities() -> pd.DataFrame:
     # read the data
     with open(RAW_MI_DATA, "r") as f:
         data = json.load(f)
@@ -37,11 +36,10 @@ if __name__ == "__main__":
 
     # create a pandas dataframe so we can format an output table.
     mi_df = pd.DataFrame({"name": name, "role": role_list, "sp": sp})
+    return mi_df
 
-    # ==========================================================================
-    # App registrations
-    # ==========================================================================
 
+def app_registrations() -> pd.DataFrame:
     with open(RAW_APP_REG_DATA, "r") as f:
         data = json.load(f)
 
@@ -53,12 +51,25 @@ if __name__ == "__main__":
             role_list.append(role)
             sp.append(v["service_principle"])
     ar_df = pd.DataFrame({"name": name, "role": role_list, "sp": sp})
+    return ar_df
 
-    # ==========================================================================
-    # Write the table to a markdown file
-    # ==========================================================================
+def ad_groups() -> pd.DataFrame:
+    with open(RAW_AD_DATA, "r") as f:
+        data = json.load(f)
 
-    out_df = pd.concat([mi_df, ar_df]).reset_index(drop=True, inplace=False)
+    rg, roles, pi, pn = [], [], [], []
+    for d in data:
+        rg.append(d["resourceGroup"])
+        roles.append(d["roleDefinitionName"])
+        pi.append(d["principalId"])
+        pn.append(d["principalName"])
+
+    ad_df = pd.DataFrame({"resourceGroup": rg, "role": roles, "principalId": pi, "principalName": pn})
+    return ad_df
+
+
+def combine(dfs: list[pd.DataFrame]) -> None:
+    out_df = pd.concat(dfs).reset_index(drop=True, inplace=False)
 
     table = out_df.to_markdown()  # NOTE: the package `tabulate` is required to run this
     # Exit if `table` is None. Should not happen, but `to_markdown()` returns
@@ -72,3 +83,21 @@ if __name__ == "__main__":
         f.write("# Managed Identity Roles\n\n")
         # Then write the table
         f.write(table)
+
+
+if __name__ == "__main__":
+    df = ad_groups()
+    t = df.to_markdown()
+    if t is None:
+        exit(1)
+    with open("tmp.md", "w") as f:
+        # first add a markdown header
+        f.write("# Managed Identity Roles\n\n")
+        # Then write the table
+        f.write(t)
+    print(t)
+    exit()
+    mi_df = managed_identities()
+    ar_df = app_registrations()
+    combine([mi_df, ar_df])
+    print("Wrote output to", OUTPUT)
