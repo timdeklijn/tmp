@@ -1,10 +1,4 @@
 #!/bin/bash
 
-subscriptions=$(cat subscriptions.txt)
-
-echo $subscriptions
-
-for sub in $subscriptions
-do
-	echo $sub
-done
+date=$(date '+%Y%m%d%H%M%S')
+echo $date

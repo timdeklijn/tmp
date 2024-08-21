@@ -71,5 +71,6 @@ do
 done
 
 echo $JSON
-echo $JSON | jq > mi_roles.json
+date=$(date '+%Y%m%d%H%M%S')
+echo $JSON | jq > "${date}_mi_roles.json"
 echo "done"

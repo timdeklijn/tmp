@@ -8,19 +8,13 @@ table to a markdown table.
 
 import json
 
+import click
 import pandas as pd
 
-RAW_MI_DATA = "20240808_mi_roles.json"
-RAW_APP_REG_DATA = "20240813_app_reg_roles.json"
-OUTPUT = "roles_table.md"
 
-RAW_AD_DATA = "ad_roles.json"
-AD_OUTPUT = "ad_roles_table.md"
-
-
-def managed_identities() -> pd.DataFrame:
+def managed_identities(file: str) -> pd.DataFrame:
     # read the data
-    with open(RAW_MI_DATA, "r") as f:
+    with open(file, "r") as f:
         data = json.load(f)
 
     # unpack the data into a table. In the data the roles are stored as a
@@ -39,8 +33,8 @@ def managed_identities() -> pd.DataFrame:
     return mi_df
 
 
-def app_registrations() -> pd.DataFrame:
-    with open(RAW_APP_REG_DATA, "r") as f:
+def app_registrations(file: str) -> pd.DataFrame:
+    with open(file, "r") as f:
         data = json.load(f)
 
     name, role_list, sp = [], [], []
@@ -53,8 +47,9 @@ def app_registrations() -> pd.DataFrame:
     ar_df = pd.DataFrame({"name": name, "role": role_list, "sp": sp})
     return ar_df
 
-def ad_groups() -> pd.DataFrame:
-    with open(RAW_AD_DATA, "r") as f:
+
+def ad_groups(file: str) -> pd.DataFrame:
+    with open(file, "r") as f:
         data = json.load(f)
 
     rg, roles, pi, pn = [], [], [], []
@@ -64,11 +59,13 @@ def ad_groups() -> pd.DataFrame:
         pi.append(d["principalId"])
         pn.append(d["principalName"])
 
-    ad_df = pd.DataFrame({"resourceGroup": rg, "role": roles, "principalId": pi, "principalName": pn})
+    ad_df = pd.DataFrame(
+        {"resourceGroup": rg, "role": roles, "principalId": pi, "principalName": pn}
+    )
     return ad_df
 
 
-def combine(dfs: list[pd.DataFrame]) -> None:
+def combine(dfs: list[pd.DataFrame], output: str) -> None:
     out_df = pd.concat(dfs).reset_index(drop=True, inplace=False)
 
     table = out_df.to_markdown()  # NOTE: the package `tabulate` is required to run this
@@ -78,26 +75,36 @@ def combine(dfs: list[pd.DataFrame]) -> None:
         print("ERROR: `table` is None")
         exit(1)
 
-    with open(OUTPUT, "w") as f:
+    with open(output, "w") as f:
         # first add a markdown header
         f.write("# Managed Identity Roles\n\n")
         # Then write the table
         f.write(table)
 
 
-if __name__ == "__main__":
-    df = ad_groups()
+@click.command()
+@click.option("--mi-file", help="json file with managed identities roles")
+@click.option("--appreg-file", help="json file with app registration roles")
+@click.option("--ad-file", help="json file with AD roles")
+@click.option("--output", default="roles.md", help="name of output file")
+def main(mi_file: str, appreg_file: str, ad_file: str, output: str):
+    """run the whole script."""
+    df = ad_groups(ad_file)
     t = df.to_markdown()
     if t is None:
         exit(1)
-    with open("tmp.md", "w") as f:
+    with open(output, "w") as f:
         # first add a markdown header
         f.write("# Managed Identity Roles\n\n")
         # Then write the table
         f.write(t)
     print(t)
     exit()
-    mi_df = managed_identities()
-    ar_df = app_registrations()
+    mi_df = managed_identities(mi_file)
+    ar_df = app_registrations(appreg_file)
     combine([mi_df, ar_df])
     print("Wrote output to", OUTPUT)
+
+
+if __name__ == "__main__":
+    main()

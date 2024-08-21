@@ -42,4 +42,5 @@ do
 done
 
 echo $JSON | jq .
-echo $JSON | jq . > ad_roles.json
+date=$(date '+%Y%m%d%H%M%S')
+echo $JSON | jq . > "${date}_ad_roles.json"

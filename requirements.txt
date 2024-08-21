@@ -1,3 +1,5 @@
 ipython
 pandas
 tabulate
+click
+black

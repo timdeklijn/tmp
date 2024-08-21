@@ -89,5 +89,6 @@ do
 done
 
 # Save to file
-echo $JSON | jq > appreg_roles.json
+date=$(date '+%Y%m%d%H%M%S')
+echo $JSON | jq > "${date}_appreg_roles.json"
 echo "Done"
