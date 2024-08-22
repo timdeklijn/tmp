@@ -48,7 +48,7 @@
 APP_REG_DISPLAY_NAMES=("AR20ZPZ001-PP" "ar20ndov001-p" "ar20admonitor001-p" "AR20CROWDEDNESSUPDATESINGESTION001-P" "RA20DNAAAKDevOpsDP-Staging" "DNAKAA APIM SP TenA" "AR20CROWDEDNESSUPDATESINGESTION001-O" "ar20sigmaacl001-o" "AR20CROWDEDNESSUPDATESINGESTION001-T" "ar20monitor001-t" "ar20crowdednessapi001-t" "ar20monitor001-p" "AR20PARSER001-PP" "ar20monitor001-o" "ar20ndov001-t" "ar20parser001-p" "AR20DEVAAPLATFORM100-O" "AR20CROWDEDNESSUPDATESINGESTION001-A" "AR20DOVA001-A" "RA20DNAAAKDevOpsDP-Prod" "ar20dova001-o" "ar20sigmaacrpull001-p" "AR20ZPZ001-A" "ar20zpz001-p" "ar20sigmaacl001-t" "AR20NDOV001-A" "ar20crowdednessapi001-o" "ar20aad-token" "ar20dova001-p" "AR20CROWDEDNESSAPI001-A" "ar20sigmaacl001-p" "ar20dova001-t" "AR20PARSER001-A" "ar20zpz001-o" "AR20DEV-DNA-AAKLANT" "AR20SIGMAACRPUSH001-P" "DNAKAA APIM SP P" "ar20parser001-t" "ar20zpz001-t" "ar20ndov001-o" "ar20parser001-o" "ar20crowdednessapi001-p" )
 
 # An empty JSON object we append the results to
-JSON=$(jq -n "")
+JSON=$(jq -n .)
 
 for ar in "${APP_REG_DISPLAY_NAMES[@]}"
 do

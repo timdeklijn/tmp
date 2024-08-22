@@ -11,7 +11,7 @@
 subscriptions=$(cat subscriptions.txt)
 
 # Base json object to append results of the queries to.
-JSON=$(jq -n ".")
+JSON=$(jq -n .)
 
 for sub in $subscriptions
 do

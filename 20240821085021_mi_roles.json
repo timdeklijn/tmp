@@ -1,0 +1,14 @@
+{
+  "AKS20-AAPLATFORM-POC-2-agentpool": {
+    "service_principle": "170fa427-660f-408f-b9e8-8d136e7e1418",
+    "roles": "AcrPull\nAcrPull\nDNS Zone Contributor"
+  },
+  "mi20aappoc2": {
+    "service_principle": "deae2192-6520-4a44-a461-ebd05bdb1ace",
+    "roles": "Azure Event Hubs Data Owner\nAzure Kubernetes Service RBAC Cluster Admin\nStorage Account Contributor\nAcrPull\nStorage Blob Data Contributor\nAzure Event Hubs Data Sender\nAzure Event Hubs Data Receiver"
+  },
+  "mi20aappoc1": {
+    "service_principle": "ab09b124-7cf1-487e-aba1-34c04971a85f",
+    "roles": "Azure Event Hubs Data Owner"
+  }
+}

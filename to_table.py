@@ -12,7 +12,7 @@ import click
 import pandas as pd
 
 
-def managed_identities(file: str) -> pd.DataFrame:
+def managed_identities(file: str) -> str:
     # read the data
     with open(file, "r") as f:
         data = json.load(f)
@@ -29,11 +29,15 @@ def managed_identities(file: str) -> pd.DataFrame:
             sp.append(v["service_principle"])
 
     # create a pandas dataframe so we can format an output table.
-    mi_df = pd.DataFrame({"name": name, "role": role_list, "sp": sp})
-    return mi_df
+    df = pd.DataFrame({"name": name, "role": role_list, "sp": sp})
+    m = df.to_markdown()
+    if m is None:
+        print("ERROR: app reg df is None")
+        exit(1)
+    return m
 
 
-def app_registrations(file: str) -> pd.DataFrame:
+def app_registrations(file: str) -> str:
     with open(file, "r") as f:
         data = json.load(f)
 
@@ -44,11 +48,15 @@ def app_registrations(file: str) -> pd.DataFrame:
             name.append(k)
             role_list.append(role)
             sp.append(v["service_principle"])
-    ar_df = pd.DataFrame({"name": name, "role": role_list, "sp": sp})
-    return ar_df
+    df = pd.DataFrame({"name": name, "role": role_list, "sp": sp})
+    m = df.to_markdown()
+    if m is None:
+        print("ERROR: app reg df is None")
+        exit(1)
+    return m
 
 
-def ad_groups(file: str) -> pd.DataFrame:
+def ad_groups(file: str) -> str:
     with open(file, "r") as f:
         data = json.load(f)
 
@@ -59,27 +67,24 @@ def ad_groups(file: str) -> pd.DataFrame:
         pi.append(d["principalId"])
         pn.append(d["principalName"])
 
-    ad_df = pd.DataFrame(
+    df = pd.DataFrame(
         {"resourceGroup": rg, "role": roles, "principalId": pi, "principalName": pn}
     )
-    return ad_df
-
-
-def combine(dfs: list[pd.DataFrame], output: str) -> None:
-    out_df = pd.concat(dfs).reset_index(drop=True, inplace=False)
-
-    table = out_df.to_markdown()  # NOTE: the package `tabulate` is required to run this
-    # Exit if `table` is None. Should not happen, but `to_markdown()` returns
-    # an optional.
-    if table is None:
-        print("ERROR: `table` is None")
+    m = df.to_markdown()
+    if m is None:
+        print("ERROR: ad group df is None")
         exit(1)
+    return m
 
+
+def combine(tables: dict[str, str], output: str) -> None:
     with open(output, "w") as f:
         # first add a markdown header
-        f.write("# Managed Identity Roles\n\n")
-        # Then write the table
-        f.write(table)
+        f.write("# Roles Team Drukte\n\n")
+        for k, v in tables.items():
+            f.write(f"## {k}\n\n")
+            f.write(v)
+            f.write("\n\n")
 
 
 @click.command()
@@ -89,21 +94,12 @@ def combine(dfs: list[pd.DataFrame], output: str) -> None:
 @click.option("--output", default="roles.md", help="name of output file")
 def main(mi_file: str, appreg_file: str, ad_file: str, output: str):
     """run the whole script."""
-    df = ad_groups(ad_file)
-    t = df.to_markdown()
-    if t is None:
-        exit(1)
-    with open(output, "w") as f:
-        # first add a markdown header
-        f.write("# Managed Identity Roles\n\n")
-        # Then write the table
-        f.write(t)
-    print(t)
-    exit()
-    mi_df = managed_identities(mi_file)
-    ar_df = app_registrations(appreg_file)
-    combine([mi_df, ar_df])
-    print("Wrote output to", OUTPUT)
+    output_tables: dict[str, str] = {}
+    output_tables["AD Group Roles"] = ad_groups(ad_file)
+    output_tables["Managed Identities Roles"] = managed_identities(mi_file)
+    output_tables["App Registration Roles"] = app_registrations(appreg_file)
+    combine(output_tables, output)
+    print("Wrote output to", output)
 
 
 if __name__ == "__main__":

@@ -10,7 +10,7 @@
 subscriptions=$(cat subscriptions.txt)
 
 # append to this JSON object
-JSON=$(jq -n "")
+JSON=$(jq -n .)
 
 for sub in $subscriptions
 do
